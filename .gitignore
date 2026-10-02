@@ -1,1 +1,3 @@
 site-bundle.tar.gz
+.vercel
+.env*
