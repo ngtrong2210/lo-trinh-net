@@ -1,0 +1,8 @@
+{
+  "name": "lo-trinh-dotnet-90-ngay",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

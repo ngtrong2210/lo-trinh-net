@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102523" />
+    <meta name="description" content="Lộ trình học .NET Backend 90 ngày, từng ngày có bài học, bài tập, đầu ra và tiếng Anh phỏng vấn." />
+    <title>Lộ trình .NET Backend — 90 ngày</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#day-content">Bỏ qua đến nội dung ngày</a>
+    <header class="topbar">
+      <div class="brand-block">
+        <span class="brand-mark" aria-hidden="true">90</span>
+        <div>
+          <p class="kicker">05.10.2026 — 02.01.2027</p>
+          <h1>Lộ trình .NET Backend</h1>
+        </div>
+      </div>
+      <div class="target-copy">
+        <span>Đích đến</span>
+        <strong>Middle Backend · 30 triệu/tháng</strong>
+      </div>
+      <div class="progress-summary" aria-live="polite">
+        <div class="progress-ring" id="progress-ring"><strong id="progress-percent">0%</strong></div>
+        <div><span id="progress-days">0/90 ngày</span><small>đã hoàn thành</small></div>
+      </div>
+    </header>
+
+    <section class="control-deck" aria-label="Tìm và lọc lộ trình">
+      <label class="search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <span class="sr-only">Tìm nội dung học</span>
+        <input id="search-input" type="search" placeholder="Tìm: JWT, SQL, Vue, phỏng vấn…" autocomplete="off" />
+      </label>
+      <div class="filter-row" id="filter-row" role="group" aria-label="Lọc theo chủ đề"></div>
+      <button class="today-button" id="today-button" type="button">Về hôm nay</button>
+    </section>
+
+    <main class="workspace">
+      <aside class="roadmap-rail" aria-label="Điều hướng 13 tuần">
+        <div class="rail-heading">
+          <span>13 tuần</span>
+          <strong id="result-count">90 ngày</strong>
+        </div>
+        <nav id="week-list"></nav>
+      </aside>
+
+      <article class="day-sheet" id="day-content" tabindex="-1">
+        <div id="day-view"></div>
+      </article>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <noscript>Website cần JavaScript để hiển thị lộ trình và lưu tiến độ.</noscript>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+

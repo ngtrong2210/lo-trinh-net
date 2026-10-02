@@ -1,0 +1,218 @@
+const RESOURCES = {
+  csharp: { label: "C# documentation", url: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+  async: { label: "Asynchronous programming with async and await", url: "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/" },
+  linq: { label: "LINQ overview", url: "https://learn.microsoft.com/en-us/dotnet/csharp/linq/" },
+  dotnet10: { label: ".NET 10 documentation", url: "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview" },
+  webapi: { label: "Create a controller-based Web API", url: "https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-10.0" },
+  api: { label: "Create Web APIs with ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-10.0" },
+  http: { label: "HTTP response status codes", url: "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status" },
+  di: { label: "Dependency injection in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-10.0" },
+  config: { label: "Configuration in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-10.0" },
+  middleware: { label: "ASP.NET Core middleware", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0" },
+  errors: { label: "Handle errors in ASP.NET Core APIs", url: "https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-10.0" },
+  logging: { label: "Logging in .NET and ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-10.0" },
+  openapi: { label: "OpenAPI support in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/overview?view=aspnetcore-10.0" },
+  ef: { label: "Entity Framework Core documentation", url: "https://learn.microsoft.com/en-us/ef/core/" },
+  relationships: { label: "EF Core relationships", url: "https://learn.microsoft.com/en-us/ef/core/modeling/relationships" },
+  performance: { label: "Efficient querying with EF Core", url: "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying" },
+  transactions: { label: "Using transactions in EF Core", url: "https://learn.microsoft.com/en-us/ef/core/saving/transactions" },
+  concurrency: { label: "Handling concurrency conflicts", url: "https://learn.microsoft.com/en-us/ef/core/saving/concurrency" },
+  sqlindex: { label: "SQL Server index architecture", url: "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17" },
+  sqlplan: { label: "Display an actual execution plan", url: "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-an-actual-execution-plan?view=sql-server-ver17" },
+  auth: { label: "Authentication overview", url: "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-10.0" },
+  authorization: { label: "Policy-based authorization", url: "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-10.0" },
+  cors: { label: "Enable CORS in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0" },
+  ratelimit: { label: "Rate limiting middleware", url: "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-10.0" },
+  health: { label: "Health checks in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-10.0" },
+  unittest: { label: "Unit test C# code with dotnet test", url: "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test" },
+  integration: { label: "Integration tests in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0" },
+  architecture: { label: ".NET application architecture guides", url: "https://learn.microsoft.com/en-us/dotnet/architecture/" },
+  dapper: { label: "Dapper repository and documentation", url: "https://github.com/DapperLib/Dapper" },
+  cache: { label: "Caching overview in ASP.NET Core", url: "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview?view=aspnetcore-10.0" },
+  hosted: { label: "Background tasks with hosted services", url: "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-10.0" },
+  docker: { label: "Containerize a .NET app", url: "https://learn.microsoft.com/en-us/dotnet/core/docker/build-container" },
+  compose: { label: "Docker Compose quickstart", url: "https://docs.docker.com/compose/gettingstarted/" },
+  iis: { label: "Host ASP.NET Core on Windows with IIS", url: "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-10.0" },
+  actions: { label: "Build and test .NET with GitHub Actions", url: "https://docs.github.com/en/actions/how-tos/writing-workflows/building-and-testing/building-and-testing-net" },
+  js: { label: "JavaScript Guide", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" },
+  ts: { label: "TypeScript Handbook", url: "https://www.typescriptlang.org/docs/handbook/intro.html" },
+  vue: { label: "Vue 3 Quick Start", url: "https://vuejs.org/guide/quick-start.html" },
+  vueessentials: { label: "Vue Essentials", url: "https://vuejs.org/guide/essentials/application.html" },
+  router: { label: "Vue Router guide", url: "https://router.vuejs.org/guide/" },
+  pinia: { label: "Pinia getting started", url: "https://pinia.vuejs.org/getting-started.html" },
+  security: { label: "OWASP API Security Top 10", url: "https://owasp.org/API-Security/editions/2023/en/0x11-t10/" },
+  git: { label: "GitHub Skills", url: "https://skills.github.com/" },
+  readme: { label: "About repository README files", url: "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" },
+};
+
+const WEEK_TITLES = [
+  "Chuyển nền C# sang .NET hiện đại",
+  "ASP.NET Core Web API đúng chuẩn",
+  "EF Core và SQL Server có chiều sâu",
+  "Bảo mật, test và kiến trúc",
+  "Khởi động ERP đa kho",
+  "Luồng nhập – xuất – chuyển kho",
+  "Độ tin cậy production",
+  "Test, Docker và triển khai",
+  "Vue 3 nền tảng",
+  "Vue cho màn hình ERP",
+  "Đóng gói portfolio",
+  "CV và phỏng vấn kỹ thuật",
+  "Ứng tuyển và chốt chuyển việc",
+];
+
+const PHASES = [
+  [1, 28, "NỀN TẢNG BACKEND"],
+  [29, 56, "PROJECT PRODUCTION"],
+  [57, 77, "VUE & PORTFOLIO"],
+  [78, 90, "PHỎNG VẤN & ỨNG TUYỂN"],
+];
+
+const SPECS = [
+  ["Đo năng lực và dựng môi trường .NET 10", "Backend", "Cài .NET 10 SDK và kiểm tra dotnet --info;So sánh .NET Framework với .NET hiện đại;Tạo repo, quy ước commit và bảng theo dõi lỗi", "Tạo solution InventoryHub và một console app HealthCheck chạy được.", "Ảnh/chữ xác nhận môi trường, repo có commit đầu và danh sách 5 khoảng trống kiến thức.", "Thu âm 60 giây: nền tảng hiện tại và mục tiêu 90 ngày.", "dotnet10,csharp,git"],
+  ["Nullable, record và pattern matching", "Backend", "Nullable reference types và cảnh báo null;record, init-only và bất biến;Pattern matching switch expression", "Mô hình hóa ProductCode và Money bằng record; xử lý 5 trạng thái đơn hàng bằng switch.", "Một file demo không còn nullable warning và 5 test case chạy đúng.", "Nói 5 câu giải thích vì sao null gây lỗi production.", "csharp"],
+  ["LINQ từ bộ nhớ đến truy vấn", "Backend,SQL", "IEnumerable khác IQueryable;Deferred execution và materialization;Projection, GroupBy và tránh kéo thừa cột", "Viết 6 truy vấn trên dữ liệu sản phẩm/kho rồi giải thích truy vấn nào sẽ chạy ở database.", "File LinqLab.cs và ghi chú 3 lỗi hiệu năng thường gặp.", "Giải thích IEnumerable vs IQueryable trong 90 giây.", "linq,performance"],
+  ["async/await và CancellationToken", "Backend", "Task và luồng thực thi bất đồng bộ;Task.WhenAll cho công việc độc lập;Truyền CancellationToken xuyên suốt", "Mô phỏng gọi 3 dịch vụ song song, hủy sau 2 giây và log kết quả.", "Demo có tuần tự, song song, hủy request; ghi lại chênh lệch thời gian.", "Kể một tình huống nên và không nên dùng Task.WhenAll.", "async"],
+  ["Dependency Injection và lifetime", "Backend", "Singleton, Scoped, Transient;Constructor injection và dependency inversion;Lỗi inject scoped vào singleton", "Tạo PriceCalculator, IClock và đăng ký ba lifetime; in instance id để quan sát.", "Sơ đồ lifetime và demo chứng minh phạm vi sống.", "Trả lời câu hỏi DI giúp test và bảo trì thế nào.", "di"],
+  ["Configuration, Options và secret", "Backend,DevOps", "appsettings theo environment;Options pattern và validation;User Secrets, biến môi trường, không commit mật khẩu", "Tạo InventoryOptions có validation; cấu hình Development/Production khác nhau.", "Ứng dụng từ chối khởi động khi thiếu cấu hình bắt buộc.", "Mô tả cách bảo vệ connection string bằng tiếng Anh.", "config"],
+  ["Checkpoint 1: CRUD API đầu tiên", "Backend,Project", "Controller và route cơ bản;HTTP request/response;Ôn C# hiện đại, DI và configuration", "Tạo Products CRUD in-memory, Swagger/OpenAPI và file requests.http.", "5 endpoint chạy được; tự demo không nhìn tài liệu trong 5 phút.", "Giới thiệu API: purpose, endpoints, current limitation.", "webapi,openapi"],
+  ["HTTP và REST thực dụng", "Backend", "GET POST PUT PATCH DELETE;Status code 200 201 204 400 404 409;Resource naming và idempotency", "Thiết kế bảng endpoint cho Product, Warehouse, StockTransfer trước khi code.", "API contract 12 endpoint kèm request, response và status code.", "Đọc to và giải thích 8 thuật ngữ HTTP.", "http,api"],
+  ["Controller, routing và model binding", "Backend", "Attribute routing;Route, query, header và body binding;ActionResult<T>", "Cài ProductsController theo contract; thử 8 request hợp lệ/không hợp lệ.", "Route nhất quán, trả đúng 201 + Location và 404.", "Giải thích request đi từ route đến action.", "api,webapi"],
+  ["DTO, validation và ProblemDetails", "Backend", "Không trả entity trực tiếp;Input/output DTO;Validation và lỗi theo ProblemDetails", "Tạo CreateProductRequest, ProductResponse và validation mã/tên/giá.", "4 ca lỗi trả cấu trúc lỗi thống nhất, không lộ stack trace.", "Nói 60 giây: why DTOs matter.", "api,errors"],
+  ["Middleware và xử lý lỗi toàn cục", "Backend", "Middleware pipeline và thứ tự;Exception handler tập trung;Correlation ID", "Viết middleware gắn correlation id và exception handler ánh xạ lỗi nghiệp vụ.", "Log và response có cùng correlation id; 3 loại lỗi được ánh xạ.", "Mô tả middleware pipeline bằng 6 câu.", "middleware,errors"],
+  ["Structured logging", "Backend,DevOps", "Log level và category;Structured properties thay chuỗi ghép;Không log secret hoặc dữ liệu nhạy cảm", "Log ProductId, WarehouseId, elapsed ms cho request; mô phỏng lỗi và tìm bằng correlation id.", "Một mẫu log tốt, một mẫu log xấu và checklist dữ liệu cấm log.", "Tóm tắt một production incident giả lập.", "logging"],
+  ["OpenAPI, pagination và versioning", "Backend", "Mô tả endpoint bằng OpenAPI;Pagination metadata;Versioning khi contract thay đổi", "Thêm page/pageSize/sort vào danh sách sản phẩm và mô tả response trên Swagger.", "Swagger dễ thử; pageSize có giới hạn; ghi quyết định versioning.", "Trình bày API contract 2 phút.", "openapi,api"],
+  ["Checkpoint 2: API catalog sạch", "Backend,Project", "Ôn route DTO validation;Ôn middleware logging;Ôn pagination OpenAPI", "Refactor Products API; chạy checklist 15 request và sửa mọi lỗi quan sát được.", "Tag release v0.1, changelog ngắn và video demo thô 2 phút.", "Xem lại video, ghi 5 câu cần nói rõ hơn.", "api,git"],
+  ["Thiết kế entity và quan hệ EF Core", "Backend,SQL", "DbContext và DbSet;One-to-many, many-to-many;Required, optional và delete behavior", "Vẽ Product, Warehouse, InventoryBalance, StockMovement và cấu hình quan hệ bằng Fluent API.", "ERD bản 1 và model build thành công.", "Giải thích quan hệ và khóa ngoại trên ERD.", "ef,relationships"],
+  ["Migration và dữ liệu khởi tạo", "Backend,SQL", "Code First migration;Review SQL migration;Seed dữ liệu tham chiếu có kiểm soát", "Tạo migration đầu, xem SQL, apply lên SQL Server local và thêm 2 warehouse mẫu.", "Database dựng lại được từ đầu; lưu lệnh setup vào README.", "Nói quy trình tạo và review migration.", "ef"],
+  ["Tracking, projection và N+1", "Backend,SQL", "Tracking so với AsNoTracking;Select projection;N+1 và eager loading có chọn lọc", "So sánh 3 query danh sách sản phẩm; bật log SQL và loại bỏ N+1.", "Bảng số query/cột/thời gian trước và sau.", "Giải thích AsNoTracking khi phỏng vấn.", "ef,performance"],
+  ["Filtering, sorting và pagination SQL", "Backend,SQL", "Build IQueryable từng bước;Whitelist cột sort;Offset pagination và keyset concept", "Tạo endpoint tìm sản phẩm theo mã/tên/trạng thái, sort và page.", "10 test request; input sort lạ bị từ chối an toàn.", "Mô tả cách API xử lý filter từ đầu đến SQL.", "ef,performance"],
+  ["Transaction và tính nguyên tử", "Backend,SQL,Project", "SaveChanges transaction mặc định;Transaction nhiều bước;Commit rollback và failure path", "Cài luồng nhập kho: phiếu + dòng + movement + balance trong một transaction.", "Test ép lỗi giữa chừng chứng minh database không có dữ liệu dở dang.", "Giải thích atomicity bằng ví dụ nhập kho.", "transactions,ef"],
+  ["Optimistic concurrency", "Backend,SQL,Project", "Race condition;rowversion/concurrency token;Phản hồi 409 và chiến lược retry", "Cho hai request sửa cùng tồn kho; request thứ hai nhận conflict có thông tin hữu ích.", "Integration test conflict và ghi quyết định retry hay yêu cầu tải lại.", "Kể kịch bản hai nhân viên cùng xuất kho.", "concurrency"],
+  ["Index và execution plan", "SQL,Interview", "Clustered/nonclustered index;Seek, scan, key lookup;Đọc actual execution plan", "Tạo 100k movement giả; đo báo cáo tồn trước/sau index ghép.", "Ảnh execution plan và bảng thời gian/đọc logic trước-sau.", "Trình bày một lần tối ưu query theo cấu trúc STAR.", "sqlindex,sqlplan"],
+  ["JWT authentication", "Backend,Security", "Authentication khác authorization;Access token và claim;Refresh token, expiry và revoke concept", "Tạo login demo, phát JWT ngắn hạn và bảo vệ endpoint profile.", "Request không token=401, token hợp lệ=200, token hết hạn bị từ chối.", "Giải thích JWT không phải mã hóa dữ liệu.", "auth"],
+  ["Role và permission authorization", "Backend,Security,Project", "Role coarse-grained;Permission claim;Policy handler", "Tạo quyền products.view, products.edit, stock.issue và policy kiểm tra.", "Ba tài khoản mẫu chứng minh 403 đúng theo quyền.", "Nói khác nhau giữa 401 và 403.", "authorization"],
+  ["CORS, file upload và hardening", "Backend,Security", "CORS allowlist;Giới hạn loại/kích thước file;Không tin filename và content type", "Thêm upload ảnh sản phẩm với size limit, tên server sinh và thư mục an toàn.", "5 ca tấn công đơn giản bị chặn; checklist security ngắn.", "Giải thích vì sao CORS không thay thế authorization.", "cors,security"],
+  ["Rate limiting và health checks", "Backend,DevOps", "Fixed/sliding window;429 và Retry-After;Liveness và readiness", "Giới hạn login/report; thêm /health/live và /health/ready kiểm tra DB.", "Script gọi dồn thấy 429; health phản ánh khi DB ngắt.", "Mô tả cách theo dõi API khi triển khai.", "ratelimit,health"],
+  ["Unit test domain rules", "Backend,Testing", "Arrange Act Assert;Test hành vi không test implementation;Boundary và naming", "Test không xuất quá tồn, số lượng phải dương, phiếu đã chốt không sửa.", "Ít nhất 9 unit test nhanh, rõ và độc lập.", "Đọc tên test thành câu yêu cầu nghiệp vụ.", "unittest"],
+  ["Integration test Web API", "Backend,Testing", "WebApplicationFactory;Test database isolation;Gọi HTTP thật trong process", "Test create product, login, 401/403 và validation qua HTTP.", "6 integration test chạy một lệnh và reset dữ liệu ổn định.", "Giải thích unit test khác integration test.", "integration"],
+  ["Kiến trúc Modular Monolith vừa đủ", "Backend,Architecture", "Module boundary;Domain/Application/Infrastructure/API;Tránh repository bọc EF máy móc", "Chia solution thành BuildingBlocks, Catalog, Inventory, Sales và API; chuyển một vertical slice.", "Solution build; dependency đi đúng hướng; sơ đồ 1 trang.", "Trình bày lý do chưa chọn microservices.", "architecture"],
+  ["Chốt scope ERP và backlog", "Project,Architecture", "Use case ưu tiên;Definition of Done;Bỏ tính năng không phục vụ portfolio", "Viết backlog 20 story, chọn 8 luồng bắt buộc cho 4 tuần project.", "Project board có ưu tiên, acceptance criteria và mốc demo.", "Nói project pitch 90 giây.", "architecture,git"],
+  ["ERD đa kho và quy tắc tồn", "Project,SQL", "Ledger là nguồn lịch sử;Balance là dữ liệu đọc nhanh;Đơn vị tính và trạng thái chứng từ", "Hoàn thiện ERD 8–12 bảng và ghi 10 invariant nghiệp vụ.", "ERD v2; review khóa, unique constraint và index.", "Giải thích cách ngăn tồn âm.", "relationships,sqlindex"],
+  ["Khung solution và database", "Project,Backend", "Vertical slice;Naming convention;Migration production-friendly", "Dựng solution thật, CI build rỗng, DbContext và migration baseline.", "Clone mới, chạy setup và API khởi động dưới 10 phút.", "Đọc README setup thành tiếng và sửa câu khó hiểu.", "architecture,ef"],
+  ["Authentication module", "Project,Backend,Security", "Password hashing qua framework;Token lifecycle;User status và audit", "Cài register seed admin/login/refresh/revoke ở mức portfolio.", "Integration tests cho login, token hết hạn và user bị khóa.", "Trình bày login flow từ client đến database.", "auth,integration"],
+  ["Permission matrix", "Project,Security", "Vai trò kho, bán hàng, quản trị;Least privilege;Policy naming", "Tạo ma trận quyền và áp vào 6 endpoint hiện có.", "Tài liệu permission matrix + test 401/403/200.", "Giải thích least privilege bằng ví dụ nhân viên kho.", "authorization"],
+  ["Product và Warehouse CRUD", "Project,Backend", "Business validation;Unique code;Soft delete khi có lịch sử", "Hoàn thiện API sản phẩm, kho, đơn vị tính; seed dữ liệu demo.", "CRUD có filter/page/sort, validation và integration tests.", "Demo 2 phút bằng tiếng Anh đơn giản.", "api,ef,integration"],
+  ["Sprint review: nền móng project", "Project,Interview", "Review backlog;Review chất lượng commit;Review nợ kỹ thuật", "Demo từ clone đến login và CRUD; tạo issue cho mọi lỗi, không sửa lan man.", "Release v0.2, 5 issue ưu tiên tuần sau và nhật ký học tuần.", "Tự trả lời: what did you build this week?", "git,readme"],
+  ["Purchase Order", "Project,Backend", "Header/detail aggregate;Draft-confirm-cancel;Tính tổng và validation trạng thái", "Cài tạo/sửa/xác nhận purchase order với line items.", "API contract và test không xác nhận đơn rỗng.", "Giải thích state transition của đơn mua.", "api,ef"],
+  ["Goods Receipt trong transaction", "Project,Backend,SQL", "Nhận từng phần;Transaction;Sinh stock movement", "Cài nhận hàng từ PO, cập nhật received quantity, ledger và balance.", "Test nhận đủ/nhận một phần/nhận quá; rollback khi lỗi.", "Kể luồng nhập kho bằng 8 động từ tiếng Anh.", "transactions,integration"],
+  ["Stock ledger và tồn tức thời", "Project,SQL", "Movement bất biến;Balance theo product-warehouse;Reconcile dữ liệu", "Tạo endpoint lịch sử movement và job/command đối soát balance từ ledger.", "Một test cố làm lệch balance rồi phát hiện chênh lệch.", "Giải thích ledger vs balance.", "ef,sqlplan"],
+  ["Sales Order", "Project,Backend", "Reservation concept;Draft-confirm;Giá và snapshot dữ liệu", "Cài tạo/xác nhận sales order, chưa trừ kho trước khi xuất.", "Test trạng thái và total; quyết định rõ thời điểm kiểm tồn.", "Trình bày quyết định reservation hay không.", "api,architecture"],
+  ["Goods Issue và ngăn tồn âm", "Project,Backend,SQL", "Atomic check-and-update;Concurrent issue;Domain error 409", "Cài xuất kho; chạy hai request cạnh tranh trên cùng SKU.", "Không có tồn âm; test đủ tồn, thiếu tồn, cạnh tranh.", "Mô tả bug tồn âm và cách ngăn.", "transactions,concurrency"],
+  ["Chuyển kho", "Project,Backend", "Xuất nguồn + nhập đích;Một transaction;Trạng thái in-transit có cần không", "Cài chuyển kho trực tiếp trong một transaction và ghi hai movement liên kết.", "Test nguồn=đích, thiếu tồn, rollback và audit liên kết.", "Giải thích trade-off chuyển trực tiếp vs in-transit.", "transactions,ef"],
+  ["Checkpoint luồng kho", "Project,Testing", "Ôn nhập xuất chuyển;Ôn trạng thái chứng từ;Ôn transaction và concurrency", "Chạy kịch bản end-to-end 25 bước; sửa lỗi bằng test tái hiện trước.", "Bộ regression xanh và video demo nghiệp vụ 3 phút.", "Tường thuật demo bằng tiếng Anh theo thứ tự First/Then/Finally.", "integration,unittest"],
+  ["Idempotency cho lệnh ghi", "Project,Backend", "Duplicate request;Idempotency key;Lưu kết quả và phạm vi key", "Thêm idempotency cho goods receipt/issue và gửi cùng request hai lần.", "Chỉ một movement được tạo; response lần hai nhất quán.", "Giải thích retry mạng không được tạo phiếu trùng.", "api,architecture"],
+  ["Concurrency production", "Project,Backend,SQL", "rowversion;Retry có giới hạn;Lock duration và isolation", "Bổ sung rowversion cho balance; log conflict và trả hướng xử lý rõ.", "Load test nhỏ chứng minh không mất cập nhật.", "Trả lời: how do you handle concurrent stock updates?", "concurrency,transactions"],
+  ["Audit log", "Project,Backend", "Ai làm gì khi nào;Before/after có chọn lọc;Dữ liệu nhạy cảm", "Ghi audit cho login, xác nhận phiếu, nhập/xuất/chuyển; endpoint chỉ admin xem.", "Audit có actor, action, entity, timestamp, correlation id.", "Mô tả cách điều tra ai đã sửa chứng từ.", "logging,authorization"],
+  ["Báo cáo nhập–xuất–tồn bằng Dapper", "Project,SQL", "Khi dùng Dapper;Parameterized SQL;Opening/in/out/closing formula", "Viết query báo cáo theo kho, SKU, khoảng ngày và map DTO bằng Dapper.", "Kết quả đối soát với ledger; execution plan và index hợp lý.", "Giải thích vì sao chọn Dapper cho báo cáo này.", "dapper,sqlplan"],
+  ["Caching có chủ đích", "Project,Backend", "Cache-aside;TTL;Invalidation khó hơn lưu;Không cache dữ liệu nhạy cảm", "Cache danh mục đơn vị tính hoặc warehouse; đo hit/miss và xóa cache khi cập nhật.", "Ghi quyết định dữ liệu nào cache/không cache và vì sao.", "Trả lời câu hỏi cache invalidation bằng ví dụ.", "cache"],
+  ["Background job vừa đủ", "Project,Backend", "IHostedService/queue;Job idempotent;Shutdown và retry", "Tạo hàng đợi xuất báo cáo CSV giả lập bằng BackgroundService.", "API trả job id; job có trạng thái, log và hủy an toàn khi dừng.", "Mô tả vòng đời background job.", "hosted"],
+  ["Production readiness review", "Project,DevOps", "Health/log/error;Secret/config;Timeout/cancellation", "Chạy checklist 30 mục; cố ngắt DB, token sai, request lớn, timeout.", "Danh sách pass/fail và issue P0/P1/P2 còn lại.", "Tóm tắt trạng thái project như báo cáo daily stand-up.", "health,logging,security"],
+  ["Unit test service nghiệp vụ", "Testing,Project", "Test invariant;Builder cho fixture;Không mock DbContext vô ích", "Bổ sung test cho mọi rule của receipt, issue, transfer và state transition.", "Tối thiểu 20 unit tests chạy nhanh; mutation thủ công một rule làm test đỏ.", "Giải thích một test quan trọng nhất.", "unittest"],
+  ["Integration test luồng nhập", "Testing,Project", "Database sạch;Seed tối thiểu;Assert cả API và DB effect", "Test PO → receipt → ledger → balance → report.", "Một test happy path và 4 failure path độc lập.", "Tường thuật test scenario theo Given/When/Then.", "integration,transactions"],
+  ["Integration test luồng xuất/chuyển", "Testing,Project", "Concurrent request;Rollback;No negative stock", "Test issue và transfer, gồm 2 request song song.", "Regression chứng minh không âm kho và không movement dở dang.", "Giải thích race condition đã test.", "integration,concurrency"],
+  ["Test phân quyền và bảo mật", "Testing,Security", "401/403/200 matrix;Input abuse;Secret leakage", "Viết data-driven test cho permission matrix và kiểm tra response lỗi không lộ chi tiết.", "Ma trận endpoint-role tự động đạt; báo cáo 5 kiểm tra OWASP.", "Nói 5 câu về API security.", "authorization,security,integration"],
+  ["Dockerfile và Docker Compose", "DevOps,Project", "Multi-stage build;Non-root concept;Compose API + SQL Server", "Containerize API và chạy cùng SQL Server; cấu hình qua environment.", "Máy sạch chạy docker compose up và health check xanh.", "Giải thích image, container và compose.", "docker,compose"],
+  ["Triển khai IIS", "DevOps,Project", "Hosting Bundle;App pool;Reverse proxy, log và quyền thư mục", "Deploy bản Release lên IIS local/test; cấu hình environment và connection string an toàn.", "Checklist publish/rollback và ảnh health endpoint trên IIS.", "Mô tả các bước deploy không nhìn ghi chú.", "iis"],
+  ["CI, README và demo backend", "DevOps,Portfolio", "CI restore/build/test;README cho reviewer;Architecture diagram và demo script", "Tạo GitHub Actions build/test; hoàn thiện README và quay demo backend 3 phút.", "Badge CI xanh, README clone-run-test-deploy rõ, release v1.0-backend.", "Thu âm lại demo, cắt từ thừa và câu quá dài.", "actions,readme"],
+  ["JavaScript/TypeScript cấp tốc", "Vue", "let/const, object, array;Promise/async fetch;Type, interface và union", "Viết client gọi 3 endpoint với TypeScript, xử lý success/error/cancel.", "Một file api-client.ts có type rõ và không dùng any tùy tiện.", "Giải thích Promise và async bằng tiếng Anh đơn giản.", "js,ts"],
+  ["Khởi tạo Vue 3", "Vue,Project", "Vite project;Single-File Component;Composition API và script setup", "Tạo app admin, cấu hình env API URL và trang dashboard tối thiểu.", "npm run build thành công; layout mở tốt trên mobile.", "Giới thiệu cấu trúc Vue app.", "vue,vueessentials"],
+  ["Component, props và emits", "Vue", "Component boundary;Props một chiều;Emit event và slot", "Tạo BaseButton, StatusBadge, DataTableHeader và ConfirmPanel.", "Story/demo page cho 4 component và ghi contract props/events.", "Mô tả dữ liệu đi từ parent đến child.", "vueessentials"],
+  ["Form và validation", "Vue,Project", "Reactive state;Computed;Client validation không thay server validation", "Tạo form Product với lỗi field từ client và ProblemDetails từ API.", "Create/edit hoạt động; lỗi giữ nguyên input và focus đúng field.", "Nói quy tắc validation quan trọng.", "vueessentials,api"],
+  ["API client và xử lý lỗi", "Vue,Project", "Central fetch wrapper;Bearer token;401/403/409/500 UX", "Tạo apiClient typed; hiển thị lỗi có hành động thử lại hoặc đăng nhập.", "Không màn hình trắng; 5 status code có thông báo phù hợp.", "Giải thích cách frontend xử lý API error.", "ts,api"],
+  ["Vue Router và route guard", "Vue,Project", "Route map;Lazy loading concept;Auth/permission guard", "Tạo route login/products/stock/receipts/issues/reports và guard quyền.", "URL trực tiếp vẫn hoạt động; người thiếu quyền không thấy trang cấm.", "Mô tả navigation guard.", "router"],
+  ["Pinia cho auth state", "Vue,Project", "Store state/getter/action;Token lifecycle;Không đưa mọi state vào store", "Tạo auth store login/logout/restore và permission helper.", "Reload giữ phiên theo quyết định; logout xóa state sạch.", "Giải thích khi nào dùng local component state.", "pinia"],
+  ["Layout và màn hình đăng nhập", "Vue,Project", "Responsive shell;Keyboard navigation;Loading/empty/error state", "Hoàn thiện navigation theo quyền, login và session expired dialog.", "Desktop/mobile dùng được bằng bàn phím; không tràn ngang.", "Demo login/logout bằng tiếng Anh.", "vue,router"],
+  ["Danh sách sản phẩm", "Vue,Project", "Server pagination;Debounced search;URL query state", "Làm trang product table, filter, sort, create/edit và empty state.", "1000 bản ghi vẫn phân trang; refresh giữ filter trong URL.", "Trình bày 5 thao tác trên màn hình.", "vueessentials,api"],
+  ["Tồn kho theo kho", "Vue,Project", "Read model;Filter SKU/warehouse;Highlight mức tồn không phá accessibility", "Làm trang stock balance và movement history dạng master-detail.", "Chọn một dòng xem được lịch sử; dữ liệu lỗi có retry.", "Giải thích số tồn hiện tại đến từ đâu.", "vueessentials"],
+  ["Form nhập kho", "Vue,Project", "Dynamic line items;Decimal quantity;Double submit prevention", "Làm receipt form từ PO, thêm/xóa dòng và gửi idempotency key.", "Không gửi hai lần; lỗi server gắn đúng vị trí; success về detail.", "Mô tả luồng nhập từ chọn PO đến hoàn tất.", "vueessentials,api"],
+  ["Xuất và chuyển kho", "Vue,Project", "Shared form patterns;409 conflict UX;Confirmation trước thao tác quan trọng", "Làm issue/transfer form; khi conflict cho tải lại tồn và giữ draft.", "Hai luồng hoạt động; test tay thiếu tồn và conflict.", "Giải thích cách UI hỗ trợ xử lý conflict.", "vueessentials,concurrency"],
+  ["Báo cáo nhập–xuất–tồn", "Vue,Project", "Date range/filter;Table summary;Export job state", "Làm report page gọi Dapper endpoint và theo dõi export job.", "Filter rõ; tổng khớp API; loading/empty/error/export hoàn chỉnh.", "Trình bày ý nghĩa opening/in/out/closing.", "vueessentials,hosted"],
+  ["Checkpoint frontend", "Vue,Testing", "Review responsive;Review accessibility;Review API errors", "Chạy checklist 30 thao tác trên desktop/mobile; sửa lỗi theo mức ảnh hưởng.", "Release v1.0-ui và video demo full-stack 3 phút.", "Xem video, ghi lại 10 từ cần phát âm lại.", "vue,git"],
+  ["Giảm scope và dọn code", "Portfolio,Architecture", "Xóa dead code;Tên rõ;Dependency boundary", "Review toàn repo; đóng hoặc xóa feature nửa vời; gom issue sau v1.", "Main branch build/test xanh, không TODO mơ hồ, cấu trúc dễ giải thích.", "Tóm tắt kiến trúc trong 90 giây.", "architecture,git"],
+  ["Security review cuối", "Portfolio,Security", "Threat modeling nhẹ;Dependency/config secret;Authorization server-side", "Đi qua OWASP API Top 10; thử 10 abuse case và sửa lỗi có test.", "Security checklist, không secret trong git và 0 lỗi mức cao đã biết.", "Trả lời: how did you secure the API?", "security,authorization"],
+  ["Tối ưu truy vấn và hiệu năng", "Portfolio,SQL", "Measure before optimize;Slow query log;Payload và pagination", "Đo 5 endpoint chính với dữ liệu lớn; tối ưu điểm chậm nhất.", "Bảng before/after có phương pháp đo và execution plan kèm theo.", "Kể câu chuyện tối ưu theo STAR.", "performance,sqlplan"],
+  ["README tiếng Anh", "Portfolio,English", "Project pitch;Quick start;Feature, architecture và trade-off", "Viết README English: problem, features, stack, run, test, screenshots, decisions.", "Người khác có thể chạy theo README; kiểm tra link và lệnh.", "Đọc toàn README, rút ngắn câu trên 20 từ.", "readme"],
+  ["Sơ đồ kiến trúc và ERD", "Portfolio,Architecture", "Context/container/component;Data flow nhập/xuất;Legend và boundary", "Vẽ 3 sơ đồ gọn, xuất PNG/SVG và nhúng README.", "Mỗi sơ đồ trả lời một câu hỏi, không quá tải chi tiết.", "Thuyết minh từng sơ đồ 60 giây.", "architecture,readme"],
+  ["Kịch bản video demo", "Portfolio,English", "Hook theo bài toán;Luồng demo 3 phút;Nêu quyết định kỹ thuật thay vì click lan man", "Viết script và quay 3 lần: nghiệp vụ, kỹ thuật, kết quả.", "Video 2–3 phút, âm rõ, không lộ secret/dữ liệu riêng.", "Shadowing video tốt nhất và sửa 5 lỗi phát âm.", "readme"],
+  ["Deploy final và kiểm tra từ máy khác", "Portfolio,DevOps", "Production config;Database migration;Smoke test và rollback", "Deploy full-stack; nhờ/mô phỏng trình duyệt sạch chạy toàn bộ demo.", "URL hoạt động, test account, smoke checklist và rollback note.", "Demo project 5 phút Việt + 3 phút Anh.", "docker,iis,actions"],
+  ["Định vị CV đúng cấp độ", "Interview,English", "Headline theo giá trị;Không tự hạ thành junior;Backend + ERP/SQL/IIS", "Viết summary Việt/Anh 4 dòng và skills theo mức chứng minh được.", "Hai CV skeleton: .NET Backend và ERP/Full-stack.", "Thu âm phần introduce yourself 60–90 giây.", "readme"],
+  ["Bullet thành tích theo STAR", "Interview,English", "Action verb;Độ phức tạp;Số liệu chỉ dùng khi đúng sự thật", "Viết 8 bullet cho bệnh viện, thương mại, ERP/kho, SQL và deployment.", "Mỗi bullet có vấn đề–hành động–kết quả, không liệt kê nhiệm vụ chung.", "Kể một câu chuyện khó nhất theo STAR.", "readme"],
+  ["LinkedIn và GitHub", "Interview,Portfolio", "Headline/search keyword;Pinned repository;Profile consistency", "Cập nhật headline/about/experience; ghim project và dọn README/profile.", "Nhà tuyển dụng thấy vai trò mục tiêu và project trong 30 giây.", "Đọc About bằng tiếng Anh và chỉnh tự nhiên.", "git,readme"],
+  ["Phỏng vấn C#", "Interview,Backend", "async/await và cancellation;DI lifetime;IEnumerable/IQueryable, GC, exception", "Viết đáp án 12 câu; code 3 bài easy/medium trong 60 phút.", "Tự chấm: đúng, ngắn, có ví dụ project; danh sách 5 lỗ hổng.", "Mock 20 phút chỉ nói tiếng Anh kỹ thuật.", "csharp,async,linq"],
+  ["Phỏng vấn ASP.NET Core", "Interview,Backend", "Middleware;AuthN/AuthZ;Validation/error/logging/rate limit", "Vẽ request pipeline từ trí nhớ và trả lời 12 câu có dẫn project.", "Một trang cheat sheet và mock 30 phút có ghi âm.", "Nghe lại, thay câu dài bằng cấu trúc Situation–Decision–Result.", "middleware,auth,ratelimit"],
+  ["Phỏng vấn SQL/EF Core", "Interview,SQL", "Index/execution plan;Transaction/isolation/deadlock;Tracking/N+1/concurrency", "Giải 3 bài SQL; phân tích một query chậm; trả lời 12 câu.", "SQL chạy đúng, giải thích plan và trade-off EF/Dapper.", "Kể một câu chuyện tối ưu SQL 90 giây.", "sqlindex,sqlplan,concurrency"],
+  ["System design: hệ thống tồn kho", "Interview,Architecture", "Requirement và invariant;API/data model;Concurrency/idempotency/cache/scale", "Thiết kế trên giấy trong 45 phút rồi thuyết trình 20 phút.", "Sơ đồ, trade-off và 10 câu hỏi phản biện có câu trả lời.", "Trình bày design 5 phút không đọc script.", "architecture,transactions,cache"],
+  ["English: giới thiệu và kinh nghiệm", "English,Interview", "Introduce yourself;Current project/responsibility;Strength/weakness", "Viết 3 câu trả lời 60–90 giây, ghi âm 3 vòng và so sánh.", "Bản cuối rõ ý, đúng sự thật, ít filler và đúng thời lượng.", "Shadowing 15 phút rồi thu bản cuối không nhìn toàn bộ script.", "readme"],
+  ["English: project và sự cố", "English,Interview", "Difficult bug;SQL optimization;Production incident;API design/security", "Chuẩn bị 5 story theo STAR và mock hỏi đuổi why/how/trade-off.", "5 audio ngắn; mỗi story có số liệu thật hoặc mô tả định tính trung thực.", "Nghe lại ở 1.25x và ghi 10 từ phát âm yếu.", "logging,security"],
+  ["Mock interview đầy đủ", "Interview,English", "Behavioral 15 phút;Technical 35 phút;Project/system design 25 phút", "Tự quay hoặc nhờ người mock 75 phút, không dừng để tra cứu.", "Bảng chấm 1–5 cho correctness, structure, English, confidence; 3 việc sửa.", "Trả lời lại 3 câu yếu nhất sau 2 giờ.", "architecture"],
+  ["Lương, câu hỏi ngược và công ty mục tiêu", "Interview,English", "Gross/net và total package;Kỳ vọng 32–35 gross khi phù hợp;Câu hỏi về team/product/process", "Lập danh sách 30–40 công ty nhóm product/ERP/logistics/retail/healthcare; soạn kịch bản lương.", "Bảng theo dõi ứng tuyển và 10 câu hỏi ngược chất lượng.", "Luyện câu expected salary, why leave, why us.", "readme"],
+  ["Ngày ứng tuyển có chọn lọc", "Interview,Portfolio", "Đọc JD và gap;Tailor CV;Theo dõi phản hồi", "Gửi 8–10 hồ sơ phù hợp, chỉnh summary/skills theo từng nhóm JD.", "Tracker có ngày, JD, phiên bản CV, trạng thái, follow-up; không spam hồ sơ lệch.", "Đọc to email/đoạn giới thiệu trước khi gửi.", "readme,git"],
+  ["Tổng kết 90 ngày và kế hoạch tháng 1", "Interview,Portfolio", "Đối chiếu tiêu chuẩn hoàn thành;Review 3 điểm yếu từ mock;Kế hoạch ứng tuyển và học tiếp", "Mock nhanh 30 phút, chạy full test/demo, kiểm link, sao lưu ghi chú; lên lịch 2 tuần đầu tháng 1.", "Project live, CV Việt/Anh, GitHub sạch, 30+ hồ sơ mục tiêu, lịch mock/ứng tuyển rõ.", "Quay video 3 phút: tôi đã thay đổi gì và sẵn sàng cho vai trò nào.", "readme,actions"],
+];
+
+function addDays(startIso, offset) {
+  const date = new Date(`${startIso}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + offset);
+  return date.toISOString().slice(0, 10);
+}
+
+function phaseFor(day) {
+  return PHASES.find(([from, to]) => day >= from && day <= to)?.[2] ?? "LỘ TRÌNH";
+}
+
+export const ROADMAP_DAYS = SPECS.map((spec, index) => {
+  const day = index + 1;
+  const [title, rawTags, rawLessons, practice, deliverable, english, rawResources] = spec;
+  const lessons = rawLessons.split(";");
+  const week = Math.floor(index / 7) + 1;
+  const weekday = index % 7;
+  const previousTitle = index ? SPECS[index - 1][0] : "kinh nghiệm .NET Framework hiện có";
+  const nextTitle = index < SPECS.length - 1 ? SPECS[index + 1][0] : "kế hoạch ứng tuyển tháng 1/2027";
+  return {
+    day,
+    week,
+    weekTitle: WEEK_TITLES[week - 1],
+    phase: phaseFor(day),
+    date: addDays("2026-10-05", index),
+    minutes: weekday === 5 ? 240 : weekday === 6 ? 120 : 135,
+    title,
+    tags: rawTags.split(","),
+    review: day === 1
+      ? "15 phút: viết ra điều đã làm được trong 3 năm và 5 điểm còn yếu, không xem tài liệu."
+      : `15 phút: đóng ghi chú và giải thích lại “${previousTitle}”; mở code hôm qua, chạy lại đầu ra và sửa một lỗi nhỏ nếu có.`,
+    lessons,
+    practice,
+    deliverable,
+    checks: [
+      `Tự giải thích được: ${lessons[0]}?`,
+      `Nêu một lỗi thực tế liên quan đến: ${lessons[1]}?`,
+      `Đầu ra “${deliverable}” đã chạy hoặc kiểm tra lại được chưa?`,
+    ],
+    english,
+    tomorrow: day === 90
+      ? "Ngày mai: nghỉ nửa ngày, sau đó bắt đầu nhịp ứng tuyển tháng 1 theo tracker đã tạo."
+      : `Ngày mai ôn 10 phút đầu: nói lại 3 ý chính hôm nay và mở đầu ra để kiểm tra; sau đó học “${nextTitle}”.`,
+    resources: rawResources.split(",").map((key) => RESOURCES[key]).filter(Boolean),
+  };
+});
+
+export const ROADMAP_META = {
+  title: "Lộ trình .NET 90 ngày",
+  startDate: "2026-10-05",
+  endDate: "2027-01-02",
+  target: "Middle .NET Backend · mục tiêu 30 triệu/tháng",
+  project: "InventoryHub — ERP bán hàng & tồn kho đa kho",
+  weekTitles: WEEK_TITLES,
+};
+
